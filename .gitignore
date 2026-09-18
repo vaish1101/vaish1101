@@ -1,1 +1,30 @@
+# OS / editor
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets and local environment: this repo needs none
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# QA / scratch output (never production assets)
+preview/
+scratch/
+scratchpad/
+tmp/
+temp/
+playwright-report/
+browser-data/
+
+# Local banner working files (AI references, iterations, debug crops)
+assets/banner-source/

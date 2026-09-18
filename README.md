@@ -37,6 +37,7 @@
 
 <h3 align="center">✦ Featured Work</h3>
 
+<!-- BEGIN GENERATED:FEATURED_WORK -->
 <p align="center">
 <a href="https://github.com/vaish1101/ev-charging-expansion-intelligence">
 <picture>
@@ -74,6 +75,7 @@
 <img src="./assets/profile/light/featured-churn.svg" alt="Customer Churn Prediction &amp; Retention. Predictive retention system that identifies customers at churn risk, explains the main drivers, and converts model outputs into prioritized retention decisions. Tech: Python, scikit-learn, Logistic Regression, SVM, Model Evaluation, Power BI." />
 </picture>
 </p>
+<!-- END GENERATED:FEATURED_WORK -->
 
 <br />
 
