@@ -209,17 +209,17 @@ def _wrap_label(label):
         return [label[:i + 1], label[i + 1:]]
     return [label]
 
-def _label_lines(label, width):
+def _label_lines(label, width, char_w=CHAR_W):
     """Only wrap the label if it genuinely doesn't fit its column."""
-    if len(label) * CHAR_W + 6 <= width:
+    if len(label) * char_w + 6 <= width:
         return [label]
     return _wrap_label(label)
 
-def _item_width(label):
-    single_w = len(label) * CHAR_W + 6
+def _item_width(label, char_w=CHAR_W):
+    single_w = len(label) * char_w + 6
     if single_w <= TILE:
         return TILE
-    wrapped_w = max(len(l) for l in _wrap_label(label)) * CHAR_W + 6
+    wrapped_w = max(len(l) for l in _wrap_label(label)) * char_w + 6
     return max(TILE, round(wrapped_w))
 
 def _col_widths(rows):
@@ -234,7 +234,12 @@ def _col_widths(rows):
 # row the same height and every icon sit on the same baseline.
 ROW_H = 1 + TILE + LABEL_LINE * 2 + 4
 
-def _tile(t, x, w, key, label, accent_i):
+# Mobile labels: 12.5px source renders at ~11.4px in GitHub's narrowest (375px) column.
+M_LABEL_FS, M_LABEL_LINE = 12.5, 15
+M_CHAR_W = CHAR_W * M_LABEL_FS / LABEL_FS
+M_ROW_H = 1 + TILE + M_LABEL_LINE * 2 + 4
+
+def _tile(t, x, w, key, label, accent_i, fs=LABEL_FS, line=LABEL_LINE, char_w=CHAR_W):
     """One tile at left edge `x`, centred within column width `w`."""
     cx = x + w / 2
     accent = t["star"] if accent_i % 2 == 0 else t["peri"]
@@ -250,11 +255,11 @@ def _tile(t, x, w, key, label, accent_i):
                   f'stroke-dasharray="2.5 2"/>')
         frag += glyph(key, cx - GLYPH_SIZE / 2, 1 + (TILE - GLYPH_SIZE) / 2, GLYPH_SIZE, t["glyph"], 1.55)
     frag += f'<rect x="{tx-.5:.1f}" y="0.5" width="2" height="2" fill="{accent}" shape-rendering="crispEdges"/>'
-    ly = 1 + TILE + LABEL_LINE
-    for l in _label_lines(label, w):
-        frag += (f'<text x="{cx:.1f}" y="{ly:.1f}" text-anchor="middle" font-size="{LABEL_FS}" '
+    ly = 1 + TILE + line
+    for l in _label_lines(label, w, char_w):
+        frag += (f'<text x="{cx:.1f}" y="{ly:.1f}" text-anchor="middle" font-size="{fs}" '
                   f'font-weight="600" fill="{t["label"]}">{esc(l)}</text>')
-        ly += LABEL_LINE
+        ly += line
     return frag
 
 TARGET_W = 820  # desktop canvas: close to a real README content column
@@ -266,18 +271,19 @@ def techstack_matrix(t, mobile=False):
     if mobile:
         body, y, max_w = "", 4, 0
         for items in TECH_ROWS:
-            x, line_x, accent_i = 8, 8, 0
+            x, accent_i = 8, 0
             liney = y
             for key, label in items:
-                w = _item_width(label)
+                w = _item_width(label, M_CHAR_W)
                 if x + w > 300 + 8 and x > 8:
-                    liney += ROW_H + 14
+                    liney += M_ROW_H + 12
                     x = 8
-                body += f'<g transform="translate({x} {liney})">{_tile(t, 0, w, key, label, accent_i)}</g>'
+                body += (f'<g transform="translate({x} {liney})">'
+                         f'{_tile(t, 0, w, key, label, accent_i, M_LABEL_FS, M_LABEL_LINE, M_CHAR_W)}</g>')
                 x += w + 10
                 max_w = max(max_w, x)
                 accent_i += 1
-            y = liney + ROW_H + 16
+            y = liney + M_ROW_H + 16
         H = y - 16 + 6
         W = max_w + 8
         labels = "; ".join(l for row in TECH_ROWS for _, l in row)
@@ -1439,10 +1445,12 @@ def final_card(theme, t, name, sentence, chips, icon, cta="View Project ↗", mi
         right_bound = W - 74           # keep text clear of the top-right window chrome
     else:
         pad, cell, icon_x, icon_y = 18, 2, 18, 26
-        title_fs, desc_fs, desc_lh = 16.5, 13.5, 18.5
-        chip = dict(font_size=11.5, h=28, icon_s=16, gap=6, pad_l=9, pad_r=10, icon_gap=6)
+        # Sized for legibility AFTER GitHub scales the 335px card into its narrow column
+        # (about 87.5% at a 375px viewport): 18/15.5/13.5/14 render at ~15.8/13.6/11.8/12.3px.
+        title_fs, desc_fs, desc_lh = 18, 15.5, 22
+        chip = dict(font_size=13.5, h=32, icon_s=18, gap=6, pad_l=9, pad_r=10, icon_gap=6)
         title_x = icon_x + SPRITE_COLS * cell + 12
-        title_y0, desc_gap = 44, 0
+        title_y0, desc_gap = 46, 0
         right_bound = W - pad
     sprite_w, sprite_h = SPRITE_COLS * cell, SPRITE_ROWS * cell
     usable = W - 2 * pad
@@ -1468,7 +1476,7 @@ def final_card(theme, t, name, sentence, chips, icon, cta="View Project ↗", mi
         y += desc_lh
     desc_bottom = y - desc_lh
 
-    cta_gap, bottom_pad = (38, 24) if wide else (26, 20)
+    cta_gap, bottom_pad = (38, 24) if wide else (32, 22)
     _, chip_total, chip_rows = _chips_final(chips, pad, 0, usable, t, t5, **chip)
     natural_top = max(desc_bottom + (22 if wide else 16), icon_y + sprite_h + (18 if wide else 14))
     H = max(natural_top + chip_total + cta_gap + bottom_pad, min_h or 0)
@@ -1478,7 +1486,7 @@ def final_card(theme, t, name, sentence, chips, icon, cta="View Project ↗", mi
     chip_frag, _, _ = _chips_final(chips, pad, chips_top, usable, t, t5, **chip)
     body += chip_frag
 
-    cta_fs = 17 if wide else 12.5
+    cta_fs = 17 if wide else 14
     cta_y = H - bottom_pad
     cta_right = W - (60 if wide else 34)
     body += (f'<text x="{cta_right}" y="{cta_y:.1f}" text-anchor="end" font-size="{cta_fs}" font-weight="700" '
