@@ -13,11 +13,11 @@
 </p>
 
 <p>
-<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/about-database.svg" /><img src="./assets/profile/light/about-database.svg" width="21" alt="" /></picture>&nbsp; I also bring <b>2+ years of industry experience in QA Automation</b>, working with SQL-backed systems, validation, and automation across production workflows.
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/about-database.svg" /><img src="./assets/profile/light/about-database.svg" width="21" alt="" /></picture>&nbsp; I also bring <b>2+ years of industry experience in QA Automation</b>, working with SQL systems, validation, and automation across production workflows.
 </p>
 
 <p>
-<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/about-briefcase.svg" /><img src="./assets/profile/light/about-briefcase.svg" width="21" alt="" /></picture>&nbsp; <b>Looking for internship and working-student opportunities in Analytics, Data Science &amp; Applied AI.</b>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/about-briefcase.svg" /><img src="./assets/profile/light/about-briefcase.svg" width="21" alt="" /></picture>&nbsp; <b>Looking for internship and working student opportunities in Analytics, Data Science &amp; Applied AI.</b>
 </p>
 
 <p align="center"><img src="./assets/profile/divider.svg" width="360" alt="" /></p>
