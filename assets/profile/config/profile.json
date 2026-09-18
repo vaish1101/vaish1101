@@ -53,9 +53,6 @@
         "Pydantic",
         "FastAPI"
       ],
-      "chip_rows": {
-        "desktop": [4, 3]
-      },
       "url": null,
       "enabled": true,
       "order": 3
