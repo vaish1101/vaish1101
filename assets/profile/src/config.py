@@ -84,6 +84,17 @@ def validate_config(cfg: Config) -> list[str]:
         tech = p.get("technologies")
         if not isinstance(tech, list) or not tech or not all(isinstance(t, str) and t.strip() for t in tech):
             errors.append(f"{where}: 'technologies' must be a non-empty list of strings")
+        chip_rows_cfg = p.get("chip_rows")
+        if chip_rows_cfg is not None:
+            if not isinstance(chip_rows_cfg, dict) or set(chip_rows_cfg) - {"desktop", "mobile"}:
+                errors.append(f"{where}: 'chip_rows' must be an object with optional 'desktop'/'mobile' lists")
+            else:
+                for variant, counts in chip_rows_cfg.items():
+                    if (not isinstance(counts, list) or not counts
+                            or not all(isinstance(n, int) and not isinstance(n, bool) and n > 0 for n in counts)
+                            or (isinstance(tech, list) and sum(counts) != len(tech))):
+                        errors.append(f"{where}: chip_rows.{variant} must be positive integers summing to "
+                                      f"the number of technologies")
         url = p.get("url")
         if url is not None and not (isinstance(url, str) and url.startswith("https://")):
             errors.append(f"{where}: url must be null or an https:// URL")
