@@ -1,0 +1,442 @@
+{
+  "$comment": "Single source of truth for the public profile content. Visual rules live in design_tokens.json.",
+  "schema_version": 1,
+  "projects": [
+    {
+      "id": "ev-charging",
+      "slug": "ev-charging",
+      "title": "EV Charging Infrastructure Intelligence",
+      "description": "Regional analytics platform that integrates official German mobility and charging data into validated KPIs and dashboards to identify underserved regions and support infrastructure planning.",
+      "icon": "ev",
+      "technologies": [
+        "Databricks",
+        "PySpark",
+        "Delta Lake",
+        "Power BI",
+        "GitHub Actions",
+        "Python"
+      ],
+      "url": "https://github.com/vaish1101/ev-charging-expansion-intelligence",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "watch-pricing",
+      "slug": "watch-pricing",
+      "title": "Vintage Watch Parts Pricing & Turnover Intelligence",
+      "description": "Commercial analytics system for a real vintage watch parts business, using evidence based pricing and turnover analysis to generate explainable market value recommendations and selling horizon estimates from historical and active marketplace listings",
+      "icon": "watch",
+      "technologies": [
+        "Python",
+        "DuckDB",
+        "PostgreSQL",
+        "ETL",
+        "eBay API",
+        "Streamlit"
+      ],
+      "url": null,
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "ai-agent",
+      "slug": "ai-agent",
+      "title": "Business Analytics AI Assistant",
+      "description": "Multi agent AI system that turns business questions into end to end analysis, orchestrating analytics and RAG workflows to investigate KPIs, trends, and performance and provide grounded, validated decision support.",
+      "icon": "agents2",
+      "technologies": [
+        "Python",
+        "LangGraph",
+        "LLM APIs",
+        "RAG",
+        "pgvector",
+        "Pydantic",
+        "FastAPI"
+      ],
+      "url": null,
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "id": "churn",
+      "slug": "churn",
+      "title": "Customer Churn Prediction & Retention",
+      "description": "Predictive retention system that identifies customers at churn risk, explains the main drivers, and converts model outputs into prioritized retention decisions.",
+      "icon": "churn2",
+      "technologies": [
+        "Python",
+        "scikit-learn",
+        "Logistic Regression",
+        "SVM",
+        "Model Evaluation",
+        "Power BI"
+      ],
+      "url": null,
+      "enabled": true,
+      "order": 4
+    }
+  ],
+  "technologies": {
+    "python": {
+      "logo": {
+        "file": "python.svg",
+        "mono": null
+      }
+    },
+    "sql": {
+      "glyph": "sql"
+    },
+    "powerbi": {
+      "logo": {
+        "file": "powerbi.svg",
+        "mono": null
+      }
+    },
+    "excel": {
+      "logo": {
+        "file": "excel.svg",
+        "mono": null
+      }
+    },
+    "tableau": {
+      "logo": {
+        "file": "tableau_mono.svg",
+        "mono": "#E97627"
+      }
+    },
+    "dax": {
+      "glyph": "dax"
+    },
+    "powerquery": {
+      "glyph": "powerquery"
+    },
+    "postgresql": {
+      "logo": {
+        "file": "postgresql.svg",
+        "mono": null
+      }
+    },
+    "databricks": {
+      "logo": {
+        "file": "databricks_mono.svg",
+        "mono": "#FF3621"
+      }
+    },
+    "spark": {
+      "logo": {
+        "file": "apachespark.svg",
+        "mono": null
+      }
+    },
+    "azure": {
+      "logo": {
+        "file": "azure.svg",
+        "mono": null
+      }
+    },
+    "pandas": {
+      "logo": {
+        "file": "pandas.svg",
+        "mono": null
+      }
+    },
+    "numpy": {
+      "logo": {
+        "file": "numpy.svg",
+        "mono": null
+      }
+    },
+    "sklearn": {
+      "logo": {
+        "file": "scikitlearn.svg",
+        "mono": null
+      }
+    },
+    "keras": {
+      "logo": {
+        "file": "keras.svg",
+        "mono": null
+      }
+    },
+    "stats": {
+      "glyph": "stats"
+    },
+    "langchain": {
+      "logo": {
+        "file": "langchain_svgl.svg",
+        "mono": null
+      }
+    },
+    "langgraph": {
+      "logo": {
+        "file": "langgraph_mono.svg",
+        "mono": "#7FC8FF"
+      }
+    },
+    "fastapi": {
+      "logo": {
+        "file": "fastapi.svg",
+        "mono": null
+      }
+    },
+    "llms": {
+      "glyph": "llms"
+    },
+    "rag": {
+      "glyph": "rag"
+    },
+    "agentic": {
+      "glyph": "agentic"
+    },
+    "git": {
+      "logo": {
+        "file": "git.svg",
+        "mono": null
+      }
+    },
+    "gha": {
+      "logo": {
+        "file": "githubactions.svg",
+        "mono": null
+      }
+    },
+    "pytest": {
+      "logo": {
+        "file": "pytest.svg",
+        "mono": null
+      }
+    },
+    "docker": {
+      "logo": {
+        "file": "docker.svg",
+        "mono": null
+      }
+    },
+    "postman": {
+      "logo": {
+        "file": "postman.svg",
+        "mono": null
+      }
+    },
+    "selenium": {
+      "logo": {
+        "file": "selenium.svg",
+        "mono": null
+      }
+    },
+    "jira": {
+      "logo": {
+        "file": "jira.svg",
+        "mono": null
+      }
+    },
+    "confluence": {
+      "logo": {
+        "file": "confluence_mono.svg",
+        "mono": "#172B4D"
+      }
+    },
+    "streamlit": {
+      "logo": {
+        "file": "streamlit.svg",
+        "mono": null
+      }
+    },
+    "mysql": {
+      "logo": {
+        "file": "mysql.svg",
+        "mono": null
+      }
+    },
+    "pydantic": {
+      "logo": {
+        "file": "pydantic.svg",
+        "mono": "#E92063"
+      }
+    },
+    "deltalake": {
+      "glyph": "deltalake"
+    },
+    "pgvector": {
+      "glyph": "pgvector"
+    },
+    "ml": {
+      "glyph": "ml"
+    },
+    "duckdb": {
+      "logo": {
+        "file": "duckdb.svg",
+        "mono": null
+      }
+    },
+    "ebay": {
+      "logo": {
+        "file": "ebay.svg",
+        "mono": null
+      }
+    },
+    "etl": {
+      "glyph": "etl"
+    }
+  },
+  "chip_icons": {
+    "Databricks": "databricks",
+    "PySpark": "spark",
+    "Delta Lake": "deltalake",
+    "Power BI": "powerbi",
+    "GitHub Actions": "gha",
+    "Python": "python",
+    "PostgreSQL": "postgresql",
+    "DuckDB": "duckdb",
+    "ETL": "etl",
+    "eBay API": "ebay",
+    "Streamlit": "streamlit",
+    "LangGraph": "langgraph",
+    "LLM APIs": "llms",
+    "RAG": "rag",
+    "pgvector": "pgvector",
+    "Pydantic": "pydantic",
+    "FastAPI": "fastapi",
+    "scikit-learn": "sklearn"
+  },
+  "tech_stack": {
+    "rows": [
+      [
+        [
+          "python",
+          "Python"
+        ],
+        [
+          "mysql",
+          "MySQL"
+        ],
+        [
+          "postgresql",
+          "PostgreSQL"
+        ],
+        [
+          "deltalake",
+          "Delta Lake"
+        ],
+        [
+          "powerbi",
+          "Power BI"
+        ],
+        [
+          "excel",
+          "Excel"
+        ],
+        [
+          "tableau",
+          "Tableau"
+        ],
+        [
+          "streamlit",
+          "Streamlit"
+        ]
+      ],
+      [
+        [
+          "pandas",
+          "pandas"
+        ],
+        [
+          "numpy",
+          "NumPy"
+        ],
+        [
+          "sklearn",
+          "scikit-learn"
+        ],
+        [
+          "keras",
+          "Keras"
+        ],
+        [
+          "ml",
+          "Machine Learning"
+        ],
+        [
+          "databricks",
+          "Databricks"
+        ],
+        [
+          "spark",
+          "PySpark"
+        ],
+        [
+          "azure",
+          "Azure"
+        ]
+      ],
+      [
+        [
+          "langchain",
+          "LangChain"
+        ],
+        [
+          "langgraph",
+          "LangGraph"
+        ],
+        [
+          "fastapi",
+          "FastAPI"
+        ],
+        [
+          "llms",
+          "LLMs"
+        ],
+        [
+          "rag",
+          "RAG"
+        ],
+        [
+          "agentic",
+          "Agentic Workflows"
+        ],
+        [
+          "pydantic",
+          "Pydantic"
+        ],
+        [
+          "pgvector",
+          "pgvector"
+        ]
+      ],
+      [
+        [
+          "git",
+          "Git"
+        ],
+        [
+          "gha",
+          "GitHub Actions"
+        ],
+        [
+          "docker",
+          "Docker"
+        ],
+        [
+          "pytest",
+          "Pytest"
+        ],
+        [
+          "postman",
+          "Postman"
+        ],
+        [
+          "selenium",
+          "Selenium"
+        ],
+        [
+          "jira",
+          "Jira"
+        ],
+        [
+          "confluence",
+          "Confluence"
+        ]
+      ]
+    ]
+  }
+}

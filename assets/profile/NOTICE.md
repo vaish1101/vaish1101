@@ -14,3 +14,7 @@ Delta Lake, pgvector), the three About Me micro-icons, and the divider are origi
 Delta Lake and pgvector have no official public logo mark, so their tiles use an
 original glyph (a medallion-tier triangle; a database with embedding points) instead
 of a trademark.
+
+Text measurement uses Inter (https://github.com/rsms/inter), SIL Open Font License 1.1, bundled in
+src/fonts/ with its license (OFL-Inter.txt). It is used only to measure text width while laying out
+the SVGs; it is not embedded in them.
