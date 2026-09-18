@@ -5,6 +5,11 @@ measured with Pillow's BASIC layout engine -- no system fonts, no kerning/shapin
 that could differ between macOS and Linux. A per-weight safety factor (design_tokens.json)
 keeps every estimate at or above what Chrome renders for the SVG's font stack, so a line
 that "fits" here also fits for viewers whose fallback font is a little wider.
+
+SVG text is rendered with the viewer's available fallback font, so on top of that calibration
+a second per-weight allowance, ``text_measurement_safety_factor``, keeps layout safe when the
+fallback is wider still (e.g. DejaVu Sans on bare Linux). It only affects layout decisions:
+wrapping, chip widths and overflow checks. Rendered text is never stretched.
 """
 from __future__ import annotations
 
@@ -22,7 +27,7 @@ class TextMetrics:
             w: ImageFont.truetype(str(SRC_DIR / path), _REF, layout_engine=ImageFont.Layout.BASIC)
             for w, path in spec["fonts"].items()
         }
-        self._factors = spec["factors"]
+        self._factors = {w: spec["factors"][w] * spec["text_measurement_safety_factor"][w] for w in spec["factors"]}
 
     def width(self, text: str, size: float, weight: str = "400") -> float:
         return self._fonts[weight].getlength(text) * (size / _REF) * self._factors[weight]

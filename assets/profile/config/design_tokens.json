@@ -3,7 +3,7 @@
   "schema_version": 1,
   "font_stack": "-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif",
   "text_metrics": {
-    "$comment": "Text is measured with the bundled Inter fonts (OFL). Factors were calibrated against Chrome's rendering of the font stack above (and Arial) and err on the wide side, so a layout never relies on a narrower font than GitHub viewers will get.",
+    "$comment": "Text is measured with the bundled Inter fonts (OFL). 'factors' calibrate Inter to Chrome's rendering of the font stack (SF, Arial). 'text_measurement_safety_factor' adds a conservative width allowance on top, per weight, so layout also holds when the viewer's fallback font is wider (measured against DejaVu Sans, the widest common Linux default). Both are used ONLY for layout decisions (wrapping, chip widths, overflow checks); rendered text is never stretched.",
     "fonts": {
       "400": "fonts/Inter-Regular.ttf",
       "600": "fonts/Inter-SemiBold.ttf",
@@ -13,6 +13,11 @@
       "400": 1.0,
       "600": 1.05,
       "700": 1.026
+    },
+    "text_measurement_safety_factor": {
+      "400": 1.07,
+      "600": 1.06,
+      "700": 1.1
     }
   },
   "themes": {

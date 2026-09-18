@@ -30,6 +30,14 @@ Text is measured with the bundled Inter fonts (`src/fonts/`, SIL OFL), so layout
 every platform. Useful flags: `build_profile.py --check` (write nothing, exit 1 if stale),
 `--hash` (digest of all outputs), `validate_profile.py --fast` (skip the determinism check).
 
+SVG text is rendered using the viewer's available fallback font. Layout measurement includes a
+conservative width allowance so common wider fallback fonts do not clip. The allowance is the
+per-weight `text_metrics.text_measurement_safety_factor` in `design_tokens.json` (regular 1.07,
+semibold 1.06, bold 1.1). It only affects where lines wrap and how wide chips and cards are
+laid out; rendered text is never stretched (no `textLength`) and font sizes are unchanged.
+Values are the smallest that measured clean across Inter, the Chrome default stack, Arial,
+Helvetica, Noto Sans and DejaVu Sans; re-check with all of them if you change a value.
+
 ## Where things live
 
 | Path | What |

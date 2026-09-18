@@ -57,6 +57,10 @@ the tokens. Content readability wins over identical card heights.
 
 - **Size:** desktop 820px wide, 275px baseline height (`min_height`); a card grows only if its own
   text needs more (measured wrapping, never a fixed clip). Mobile 335px wide, height = content.
+- **Fallback fonts:** SVG text is rendered using the viewer's available fallback font. Layout
+  measurement includes a conservative width allowance so common wider fallback fonts do not clip;
+  titles, descriptions and chip rows may therefore wrap a little earlier than the raw Inter
+  width would suggest. Type size, colour and chip/CTA styling are unaffected.
 - **Layout (desktop):** sprite in the left column, title above description to its right, one
   full-width chip row, CTA on its own row bottom-right. **Mobile:** sprite + title on top,
   description full width below, chips wrap naturally, CTA bottom-right.
