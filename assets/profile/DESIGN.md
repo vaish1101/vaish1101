@@ -111,7 +111,7 @@ alternating corner pixel. Tile order and labels come from `tech_stack.rows`.
 ## 9. Sections and other assets
 
 Order: banner, About Me (four short paragraphs with pixel micro-icons), Tech Stack, Featured Work,
-GitHub Activity (Platane/snk snake, published by `snake.yml`), Let's Connect. The banner is a
+Let's Connect. GitHub's native contribution graph (shown automatically below the README) is the activity view; the README has no custom activity section. The banner is a
 raster (`assets/banner.png`, 1024x254) and is **not generated** by this builder; do not redraw it.
 
 ## 10. Do NOT casually change

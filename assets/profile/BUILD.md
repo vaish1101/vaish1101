@@ -108,4 +108,4 @@ assets cannot drift apart. It only checks; it never edits the repository.
   filenames, a README asset path is missing (case-sensitive), or generated output contains a local path.
 - Never commit `.env`, keys, tokens, client data, VWP inventory/exports or private source. The profile
   needs metadata only.
-- The contribution snake is published by `.github/workflows/snake.yml` to the `output` branch; leave it alone.
+- There is no custom contribution/activity section; GitHub's native contribution graph is the activity view.
