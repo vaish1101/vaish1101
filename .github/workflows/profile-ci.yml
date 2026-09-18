@@ -1,0 +1,55 @@
+name: profile-ci
+
+# Keeps the generated profile assets and the README's Featured Work region in sync with
+# assets/profile/config/. It only builds and checks; it never commits or edits anything.
+on:
+  pull_request:
+    paths:
+      - "assets/profile/**"
+      - "README.md"
+      - "requirements.txt"
+      - ".github/workflows/profile-ci.yml"
+  push:
+    branches-ignore: [output]      # `output` is the snake workflow's publish branch
+    paths:
+      - "assets/profile/**"
+      - "README.md"
+      - "requirements.txt"
+      - ".github/workflows/profile-ci.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: profile-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Build every generated asset and the README region
+        run: python assets/profile/src/build_profile.py
+
+      - name: Fail if committed assets or README are stale
+        run: |
+          git diff --exit-code -- README.md assets
+          test -z "$(git status --porcelain -- README.md assets)" || { git status --short; exit 1; }
+
+      - name: Validate (zero overflow, README sync, alt text, readability, determinism)
+        run: python assets/profile/src/validate_profile.py
+
+      - name: Preview renderer smoke test
+        run: python assets/profile/src/render_preview.py --out "$RUNNER_TEMP/preview"
