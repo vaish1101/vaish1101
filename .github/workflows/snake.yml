@@ -16,9 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: generate github-contribution-grid-snake.svg
-        uses: Platane/snk@v3
+        uses: Platane/snk@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.5.0
         with:
           github_user_name: vaish1101
+          # Read-only token used ONLY to read the contribution calendar (so anonymized
+          # private-repo contributions are counted). Repository secret; falls back to the default token if unset.
+          github_token: ${{ secrets.SNAKE_GITHUB_TOKEN || github.token }}
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
