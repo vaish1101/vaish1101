@@ -10,7 +10,6 @@ on:
       - "requirements.txt"
       - ".github/workflows/profile-ci.yml"
   push:
-    branches-ignore: [output]      # `output` is the snake workflow's publish branch
     paths:
       - "assets/profile/**"
       - "README.md"

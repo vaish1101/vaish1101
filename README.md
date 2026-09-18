@@ -79,15 +79,6 @@
 
 <br />
 
-<h3 align="center">✦ GitHub Activity</h3>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vaish1101/vaish1101/output/github-contribution-grid-snake-dark.svg" />
-    <img src="https://raw.githubusercontent.com/vaish1101/vaish1101/output/github-contribution-grid-snake.svg" width="100%" alt="Contribution graph drawn as a snake game" />
-  </picture>
-</p>
-
 <p align="center"><img src="./assets/profile/divider.svg" width="360" alt="" /></p>
 
 <h3 align="center">✦ Let's Connect</h3>
