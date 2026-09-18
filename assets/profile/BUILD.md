@@ -68,6 +68,9 @@ Helvetica, Noto Sans and DejaVu Sans; re-check with all of them if you change a 
    ```
    `icon` must be a key in `sprites.json`. Technologies with an entry in `chip_icons` get a logo
    or glyph; others render as text-only chips.
+   *Optional:* `"chip_rows": {"desktop": [4, 3]}` forces a break after that many chips per row
+   (must sum to the number of technologies; `desktop`/`mobile` are independent). Without it chips
+   wrap automatically, which is the default for every project and for mobile.
 2. *Only if you need a new visual:* add a 24x22 grid to `config/sprites.json` (see DESIGN.md).
 3. `python assets/profile/src/build_profile.py` -- generates the four SVGs (light/dark x
    desktop/mobile), updates the README region and alt text.

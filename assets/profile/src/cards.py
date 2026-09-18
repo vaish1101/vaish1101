@@ -16,19 +16,24 @@ CHIP_STROKE_WIDTH = 1.7
 
 
 def _chips(cfg: Config, metrics: TextMetrics, items: list[str], x0, y0, max_w, theme: str, chip: dict,
-           ids: IdScope):
+           ids: IdScope, row_counts: list[int] | None = None):
     """Technology chips: boxy pixel-frame pills with a real logo/glyph where one is known.
-    Wraps to a new row only when a chip would overrun. Returns (svg, total_height, rows)."""
+    Wraps to a new row only when a chip would overrun, or where the optional `row_counts`
+    (chips per row, from the project's `chip_rows`) asks for a break. Returns (svg, total_height, rows)."""
     t, t5 = cfg.tokens["themes"][theme], cfg.tokens["card_colors"][theme]
     h, gap, icon_s = chip["height"], chip["gap"], chip["icon_size"]
     pad_l, pad_r, icon_gap, fs = chip["pad_left"], chip["pad_right"], chip["icon_gap"], chip["font_size"]
     row_gap = max(6, gap)
     chip_icons = cfg.profile["chip_icons"]
     cur_x, cur_y, frag = x0, y0, ""
-    for label in items:
+    breaks, run = set(), 0
+    for n in row_counts or []:
+        run += n
+        breaks.add(run)
+    for i, label in enumerate(items):
         key = chip_icons.get(label)
         w = pad_l + (icon_s + icon_gap if key else 0) + metrics.width(label, fs, "600") + pad_r
-        if cur_x + w > x0 + max_w and cur_x > x0:
+        if cur_x > x0 and (i in breaks or cur_x + w > x0 + max_w):
             cur_x = x0
             cur_y += h + row_gap
         frag += (f'<rect data-role="chip" x="{cur_x:.1f}" y="{cur_y:.1f}" width="{w:.1f}" height="{h}" rx="{chip["radius"]}" '
@@ -87,13 +92,16 @@ def render_card(cfg: Config, metrics: TextMetrics, theme: str, project: dict, va
     desc_bottom = y - desc_lh
 
     chip = L["chip"]
-    _, chip_total, chip_rows = _chips(cfg, metrics, project["technologies"], pad, 0, usable, theme, chip, IdScope())
+    row_counts = (project.get("chip_rows") or {}).get(variant)
+    _, chip_total, chip_rows = _chips(cfg, metrics, project["technologies"], pad, 0, usable, theme, chip,
+                                      IdScope(), row_counts)
     natural_top = max(desc_bottom + L["chips_gap_after_desc"], sprite_y + sprite_h + L["chips_gap_after_sprite"])
     H = max(natural_top + chip_total + L["cta_gap"] + L["bottom_pad"], L["min_height"])
     # chips hang from the CTA row, not from the description, so the chip row and the CTA land
     # at the same position on every card however many lines the copy wraps to
     chips_top = H - L["bottom_pad"] - L["cta_gap"] - chip_total
-    chip_svg, _, _ = _chips(cfg, metrics, project["technologies"], pad, chips_top, usable, theme, chip, ids)
+    chip_svg, _, _ = _chips(cfg, metrics, project["technologies"], pad, chips_top, usable, theme, chip, ids,
+                            row_counts)
     body += chip_svg
 
     cta_y = H - L["bottom_pad"]
