@@ -29,7 +29,7 @@
 <source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/stack-board-mobile.svg" />
 <source media="(max-width: 560px)" srcset="./assets/profile/light/stack-board-mobile.svg" />
 <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/stack-board.svg" />
-<img src="./assets/profile/light/stack-board.svg" width="820" alt="Tech stack: Python, SQL, PostgreSQL, Power BI, Excel, Tableau, Streamlit; pandas, NumPy, scikit-learn, Keras, Databricks, PySpark, Delta Lake; Azure, LangGraph, LLM APIs, RAG, FastAPI, Pydantic, pgvector; Git, GitHub Actions, Docker, Pytest, Selenium, Jira, Confluence" />
+<img src="./assets/profile/light/stack-board.svg" width="820" alt="Tech stack: Python, SQL, PostgreSQL, Power BI, Excel, Streamlit, pandas, NumPy, scikit-learn, Keras, Databricks, PySpark, Delta Lake, Azure, LangGraph, LLM APIs, RAG, FastAPI, Pydantic, pgvector, Git, GitHub Actions, Docker, Pytest, Selenium, Jira, Confluence" />
 </picture>
 </p>
 

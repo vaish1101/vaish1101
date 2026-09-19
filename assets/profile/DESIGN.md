@@ -104,10 +104,12 @@ recognisable; do not fake a logo for a concept (DAX, RAG, pgvector, ...).
 
 ## 8. Tech Stack board
 
-Four rows of seven (28 technologies), column-aligned on desktop (shared column widths, uniform row
-height, 820px canvas). On mobile each row wraps into evenly balanced, centred lines (e.g. 4 + 3) on a
-fixed 313px canvas with 12.5px labels. Tiles are 34px with 24px logos (19px glyphs) and a small
-alternating corner pixel. Tile order and labels come from `tech_stack.rows`.
+One continuous grid, no category headings. Items are placed sequentially into fixed columns: 7 on
+desktop (700px grid centred on the 820px canvas, equal tracks) and 4 on mobile (313px canvas, equal
+tracks). A partial last row keeps the same column tracks (it is never centred on its own). Tiles are
+34px with 24px logos (19px glyphs) and a small alternating corner pixel; labels are 9.5px desktop /
+12.5px mobile and wrap only when they do not fit their track. Order and labels come from
+`tech_stack.items`; column counts and widths from `tech_stack` in `design_tokens.json`.
 
 ## 9. Sections and other assets
 

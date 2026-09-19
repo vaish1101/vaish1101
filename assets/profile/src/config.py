@@ -118,10 +118,9 @@ def validate_config(cfg: Config) -> list[str]:
             errors.append(f"technology {key!r}: logo file {spec['logo']['file']!r} not found in src/logos")
         if "glyph" in spec and spec["glyph"] not in cfg.glyphs:
             errors.append(f"technology {key!r}: unknown glyph {spec['glyph']!r}")
-    for r, row in enumerate(profile.get("tech_stack", {}).get("rows", [])):
-        for key, _label in row:
-            if key not in techs:
-                errors.append(f"tech_stack row {r}: unknown technology key {key!r}")
+    for i, entry in enumerate(profile.get("tech_stack", {}).get("items", [])):
+        if not (isinstance(entry, list) and len(entry) == 2 and entry[0] in techs and isinstance(entry[1], str)):
+            errors.append(f"tech_stack item {i}: expected [technology key, label] with a known key, got {entry!r}")
     for theme in cfg.themes:
         if theme not in tokens["themes"] or theme not in tokens["card_colors"]:
             errors.append(f"design_tokens: theme {theme!r} missing")

@@ -267,25 +267,26 @@
   "tech_stack": {
     "desktop": {
       "width": 820,
+      "columns": 7,
+      "grid_width": 700,
       "tile": 34,
       "logo": 24,
       "glyph": 19,
       "label_size": 9.5,
       "label_line": 11,
       "char_width": 5.35,
-      "min_gap": 14,
       "row_gap": 16
     },
     "mobile": {
+      "canvas_width": 313,
+      "columns": 4,
+      "track_width": 72,
       "tile": 34,
       "logo": 24,
       "glyph": 19,
       "label_size": 12.5,
       "label_line": 15,
-      "row_wrap_limit": 308,
-      "row_gap": 16,
-      "wrap_gap": 12,
-      "item_gap": 10
+      "row_gap": 16
     }
   },
   "validation": {
