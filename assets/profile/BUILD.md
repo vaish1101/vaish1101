@@ -42,7 +42,7 @@ Helvetica, Noto Sans and DejaVu Sans; re-check with all of them if you change a 
 
 | Path | What |
 |---|---|
-| `assets/profile/config/profile.json` | **Content**: projects, technology registry, chip icons, Tech Stack rows |
+| `assets/profile/config/profile.json` | **Content**: projects, technology registry, chip icons, Tech Stack items |
 | `assets/profile/config/design_tokens.json` | Every visual constant (colours, sizes, spacing, frame, targets) |
 | `assets/profile/config/sprites.json` | Pixel sprites (24x22 character grids + palette) |
 | `assets/profile/config/glyphs.json` | Concept glyphs for technologies without an official logo |
@@ -88,7 +88,8 @@ No renderer code changes, and any number of projects is supported.
 - **Reorder:** change `order` (lower first; ties broken by `id`).
 - **Add a new technology chip logo:** drop the official SVG in `src/logos/`, register it under
   `technologies` and map the label under `chip_icons`; credit it in `NOTICE.md`.
-- **Change the Tech Stack:** edit `tech_stack.rows` (keep rows balanced; see DESIGN.md section 8).
+- **Change the Tech Stack:** edit the ordered list `tech_stack.items` (`[technology key, label]`); the grid fills
+  sequentially into 7 (desktop) / 4 (mobile) columns. See DESIGN.md section 8.
 
 ## Regenerate everything
 

@@ -1,5 +1,5 @@
-"""Tech Stack board: a column-aligned grid of logo/glyph tiles (desktop) or a wrapped flow of
-the same tiles (mobile). Rows come from config/profile.json -> tech_stack.rows.
+"""Tech Stack board: logo/glyph tiles placed sequentially into one fixed-column grid (7 columns on
+desktop, 4 on mobile). Items come from config/profile.json -> tech_stack.items.
 
 Labels are sized with a per-character width estimate (not measured glyphs) so the approved
 desktop layout stays exactly as designed; the estimate is deterministic and needs no font.
@@ -20,6 +20,9 @@ def _wrap_label(label: str) -> list[str]:
     return [label]
 
 
+LABEL_SIDE_SLACK = 10          # a label must leave this much room inside its column track
+
+
 class _Board:
     def __init__(self, cfg: Config, mode: str):
         ts = cfg.tokens["tech_stack"]
@@ -28,16 +31,10 @@ class _Board:
         self.fs, self.line = self.p["label_size"], self.p["label_line"]
         base = ts["desktop"]
         self.char_w = base["char_width"] * self.fs / base["label_size"]
-        self.row_h = 1 + self.tile + self.line * 2 + 4   # every row reserves a two-line label slot
+        self.row_h = 1 + self.tile + self.line * 2 + 4   # replaced by the real label height in render_techstack
 
     def label_lines(self, label: str, width: float) -> list[str]:
         return [label] if len(label) * self.char_w + 6 <= width else _wrap_label(label)
-
-    def item_width(self, label: str) -> int:
-        if len(label) * self.char_w + 6 <= self.tile:
-            return self.tile
-        wrapped = max(len(part) for part in _wrap_label(label)) * self.char_w + 6
-        return max(self.tile, round(wrapped))
 
     def tile_svg(self, theme: str, x, w, key, label, accent_i, ids: IdScope) -> str:
         t = self.cfg.tokens["themes"][theme]
@@ -56,7 +53,7 @@ class _Board:
             frag += tech_icon(self.cfg, key, cx - self.glyph / 2, 1 + (self.tile - self.glyph) / 2, self.glyph, t, ids, glyph_width=1.55)
         frag += f'<rect x="{tx - .5:.1f}" y="0.5" width="2" height="2" fill="{accent}" shape-rendering="crispEdges"/>'
         ly = 1 + self.tile + self.line
-        for part in self.label_lines(label, w):
+        for part in self.label_lines(label, w - LABEL_SIDE_SLACK):
             frag += (f'<text x="{cx:.1f}" y="{ly:.1f}" text-anchor="middle" font-size="{self.fs}" '
                      f'font-weight="600" fill="{t["label"]}">{esc(part)}</text>')
             ly += self.line
@@ -64,43 +61,23 @@ class _Board:
 
 
 def render_techstack(cfg: Config, theme: str, mode: str) -> str:
-    """mode is 'desktop' or 'mobile'."""
-    rows = cfg.profile["tech_stack"]["rows"]
+    """mode is 'desktop' or 'mobile'. Items are placed sequentially into one fixed-column grid; a
+    partial last row stays on the same column tracks (it is never centred on its own)."""
+    items = cfg.profile["tech_stack"]["items"]
     b, ids = _Board(cfg, mode), IdScope()
-    labels = "; ".join(label for row in rows for _, label in row)
-    title = f"Tech stack -- {labels}"
-    body, y = "", 4
-
-    if mode == "mobile":
-        p, max_w = b.p, 0
-        for items in rows:
-            x, accent_i, liney = 8, 0, y
-            for key, label in items:
-                w = b.item_width(label)
-                if x + w > p["row_wrap_limit"] and x > 8:
-                    liney += b.row_h + p["wrap_gap"]
-                    x = 8
-                body += f'<g transform="translate({x} {liney})">{b.tile_svg(theme, 0, w, key, label, accent_i, ids)}</g>'
-                x += w + p["item_gap"]
-                max_w = max(max_w, x)
-                accent_i += 1
-            y = liney + b.row_h + p["row_gap"]
-        H = y - p["row_gap"] + 6
-        return svg_doc(round(max_w + 8), round(H), body, title, cfg.tokens["font_stack"])
-
     p = b.p
-    n_cols = max(len(r) for r in rows)
-    cols = [b.tile] * n_cols
-    for row in rows:
-        for j, (_, label) in enumerate(row):
-            cols[j] = max(cols[j], b.item_width(label))
-    gap = max(p["min_gap"], (p["width"] - 16 - sum(cols)) / (n_cols - 1))
-    for row in rows:
-        x, accent_i = 8, 0
-        for j, (key, label) in enumerate(row):
-            body += f'<g transform="translate({x:.1f} {y})">{b.tile_svg(theme, 0, cols[j], key, label, accent_i, ids)}</g>'
-            x += cols[j] + gap
-            accent_i += 1
-        y += b.row_h + p["row_gap"]
-    H = y - p["row_gap"] + 6
-    return svg_doc(p["width"], round(H), body, title, cfg.tokens["font_stack"])
+    cols = p["columns"]
+    track = p["grid_width"] / cols if mode == "desktop" else p["track_width"]
+    canvas_w = p["width"] if mode == "desktop" else p["canvas_width"]
+    left = (canvas_w - track * cols) / 2
+    max_lines = max(len(b.label_lines(label, track - LABEL_SIDE_SLACK)) for _, label in items)
+    b.row_h = 1 + b.tile + b.line * max_lines + 4      # every row reserves the tallest label slot
+    title = "Tech stack -- " + "; ".join(label for _, label in items)
+    body = ""
+    for i, (key, label) in enumerate(items):
+        r, c = divmod(i, cols)
+        x, y = left + c * track, 4 + r * (b.row_h + p["row_gap"])
+        body += f'<g transform="translate({x:.1f} {y})">{b.tile_svg(theme, 0, track, key, label, c, ids)}</g>'
+    rows = -(-len(items) // cols)
+    H = 4 + rows * b.row_h + (rows - 1) * p["row_gap"] + 6
+    return svg_doc(canvas_w, round(H), body, title, cfg.tokens["font_stack"])
