@@ -20,6 +20,28 @@ def _wrap_label(label: str) -> list[str]:
     return [label]
 
 
+def _balanced_line_size(widths: list[int], gap: int, limit: float) -> int:
+    """Items per line when a row has to wrap: as even as possible (e.g. 4+3, not 5+2).
+
+    Falls back to plain greedy filling when an even split would not fit the limit."""
+    def lines_greedy() -> int:
+        n, x = 1, 8
+        for i, w in enumerate(widths):
+            if x + w > limit and x > 8:
+                n, x = n + 1, 8
+            x += w + gap
+        return n
+
+    n_lines = lines_greedy()
+    if n_lines == 1:
+        return len(widths)
+    per = -(-len(widths) // n_lines)
+    for start in range(0, len(widths), per):
+        if 8 + sum(widths[start:start + per]) + gap * (len(widths[start:start + per]) - 1) > limit:
+            return len(widths)
+    return per
+
+
 class _Board:
     def __init__(self, cfg: Config, mode: str):
         ts = cfg.tokens["tech_stack"]
@@ -72,21 +94,25 @@ def render_techstack(cfg: Config, theme: str, mode: str) -> str:
     body, y = "", 4
 
     if mode == "mobile":
-        p, max_w = b.p, 0
+        p = b.p
+        canvas_w = round(p["row_wrap_limit"] + 5)       # fixed width keeps the README's column scaling stable
         for items in rows:
-            x, accent_i, liney = 8, 0, y
-            for key, label in items:
-                w = b.item_width(label)
-                if x + w > p["row_wrap_limit"] and x > 8:
+            widths = [b.item_width(label) for _, label in items]
+            per_line = _balanced_line_size(widths, p["item_gap"], p["row_wrap_limit"])
+            lines = [list(range(i, min(i + per_line, len(items)))) for i in range(0, len(items), per_line)]
+            liney = y
+            for n, line in enumerate(lines):
+                total = sum(widths[i] for i in line) + p["item_gap"] * (len(line) - 1)
+                x = round((canvas_w - total) / 2, 1)          # each line centred in the canvas
+                for i in line:
+                    key, label = items[i]
+                    body += f'<g transform="translate({x:g} {liney})">{b.tile_svg(theme, 0, widths[i], key, label, i, ids)}</g>'
+                    x += widths[i] + p["item_gap"]
+                if n < len(lines) - 1:
                     liney += b.row_h + p["wrap_gap"]
-                    x = 8
-                body += f'<g transform="translate({x} {liney})">{b.tile_svg(theme, 0, w, key, label, accent_i, ids)}</g>'
-                x += w + p["item_gap"]
-                max_w = max(max_w, x)
-                accent_i += 1
             y = liney + b.row_h + p["row_gap"]
         H = y - p["row_gap"] + 6
-        return svg_doc(round(max_w + 8), round(H), body, title, cfg.tokens["font_stack"])
+        return svg_doc(canvas_w, round(H), body, title, cfg.tokens["font_stack"])
 
     p = b.p
     n_cols = max(len(r) for r in rows)

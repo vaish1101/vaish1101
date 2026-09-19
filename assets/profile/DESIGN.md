@@ -104,8 +104,9 @@ recognisable; do not fake a logo for a concept (DAX, RAG, pgvector, ...).
 
 ## 8. Tech Stack board
 
-Four rows, column-aligned on desktop (shared column widths, uniform row height, 820px canvas),
-wrapped flow on mobile with 12.5px labels. Tiles are 34px with 24px logos (19px glyphs) and a small
+Four rows of seven (28 technologies), column-aligned on desktop (shared column widths, uniform row
+height, 820px canvas). On mobile each row wraps into evenly balanced, centred lines (e.g. 4 + 3) on a
+fixed 313px canvas with 12.5px labels. Tiles are 34px with 24px logos (19px glyphs) and a small
 alternating corner pixel. Tile order and labels come from `tech_stack.rows`.
 
 ## 9. Sections and other assets

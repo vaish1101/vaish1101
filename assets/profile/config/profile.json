@@ -308,15 +308,11 @@
         ],
         [
           "mysql",
-          "MySQL"
+          "SQL"
         ],
         [
           "postgresql",
           "PostgreSQL"
-        ],
-        [
-          "deltalake",
-          "Delta Lake"
         ],
         [
           "powerbi",
@@ -353,10 +349,6 @@
           "Keras"
         ],
         [
-          "ml",
-          "Machine Learning"
-        ],
-        [
           "databricks",
           "Databricks"
         ],
@@ -365,34 +357,30 @@
           "PySpark"
         ],
         [
-          "azure",
-          "Azure"
+          "deltalake",
+          "Delta Lake"
         ]
       ],
       [
         [
-          "langchain",
-          "LangChain"
+          "azure",
+          "Azure"
         ],
         [
           "langgraph",
           "LangGraph"
         ],
         [
-          "fastapi",
-          "FastAPI"
-        ],
-        [
           "llms",
-          "LLMs"
+          "LLM APIs"
         ],
         [
           "rag",
           "RAG"
         ],
         [
-          "agentic",
-          "Agentic Workflows"
+          "fastapi",
+          "FastAPI"
         ],
         [
           "pydantic",
@@ -419,10 +407,6 @@
         [
           "pytest",
           "Pytest"
-        ],
-        [
-          "postman",
-          "Postman"
         ],
         [
           "selenium",
