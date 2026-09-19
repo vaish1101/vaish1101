@@ -438,5 +438,17 @@
         ]
       ]
     ]
-  }
+  },
+  "connect": [
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "icon": "linkedin"
+    },
+    {
+      "id": "email",
+      "label": "Email",
+      "icon": "mail"
+    }
+  ]
 }

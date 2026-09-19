@@ -292,5 +292,42 @@
     "safe_margin": 10,
     "icon_margin": 18,
     "readability_viewport": "375"
+  },
+  "connect": {
+    "$comment": "Let's Connect links: one image per link so each can be wrapped in its own <a>. Pixel icon + label + stepped underline; sizes per viewport. Labels are measured like every other text (see text_metrics).",
+    "desktop": {
+      "height": 56,
+      "pad": 4,
+      "cell": 3,
+      "label_size": 21,
+      "icon_gap": 14,
+      "underline_gap": 9,
+      "end_slack": 8
+    },
+    "mobile": {
+      "height": 42,
+      "pad": 4,
+      "cell": 2,
+      "label_size": 16,
+      "icon_gap": 8,
+      "underline_gap": 8,
+      "end_slack": 5
+    },
+    "divider": {
+      "width": 24,
+      "line_color": "#9C94E4",
+      "dot_color": "#9C94E4",
+      "width_mobile": 14
+    },
+    "colors": {
+      "dark": {
+        "linkedin": "#6B9BFF",
+        "email": "#F58A8A"
+      },
+      "light": {
+        "linkedin": "#2F5FD0",
+        "email": "#C8455F"
+      }
+    }
   }
 }
