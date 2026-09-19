@@ -17,6 +17,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import config as cfgmod  # noqa: E402
 from bounds import check_card, check_stack  # noqa: E402
 from cards import render_card  # noqa: E402
+from connect import render_divider, render_link  # noqa: E402
 from decor import about_icons, divider  # noqa: E402
 from readme_gen import featured_markup, sync_readme  # noqa: E402
 from techstack import render_techstack  # noqa: E402
@@ -40,6 +41,11 @@ def generate(cfg: cfgmod.Config, metrics: TextMetrics | None = None):
                 files[path], meta[path] = render_card(cfg, metrics, theme, project, mode)
         for name, svg in about_icons(cfg, theme).items():
             files[f"{base}/{name}"] = svg
+        for mode, suffix in (("desktop", ""), ("mobile", "-mobile")):
+            for link in cfg.profile["connect"]:
+                files[f"{base}/connect-{link['id']}{suffix}.svg"] = render_link(cfg, metrics, theme, link, mode)
+    for mode, suffix in (("desktop", ""), ("mobile", "-mobile")):
+        files[f"{REL_PROFILE}/connect-divider{suffix}.svg"] = render_divider(cfg, mode)
     return files, meta
 
 
@@ -50,7 +56,7 @@ def check_bounds(cfg: cfgmod.Config, metrics: TextMetrics, files: dict) -> list[
         name = path.removeprefix(REL_PROFILE + "/")
         if "/featured-" in path:
             errs += check_card(name, svg, metrics, cfg.tokens)
-        elif "/stack-board" in path:
+        elif "/stack-board" in path or "/connect-" in path:
             errs += check_stack(name, svg, metrics)
     return errs
 

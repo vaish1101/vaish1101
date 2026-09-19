@@ -84,7 +84,21 @@
 <h3 align="center">✦ Let's Connect</h3>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/vaishnavi-iyer-60b9141b1/"><img src="./assets/profile/linkedin.svg" height="18" alt="" />&nbsp;LinkedIn</a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="mailto:vaishnaviiyer2002@gmail.com"><img src="./assets/profile/gmail.svg" height="18" alt="" />&nbsp;Email</a>
+<a href="https://www.linkedin.com/in/vaishnavi-iyer-60b9141b1/">
+<picture>
+<source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/connect-linkedin-mobile.svg" />
+<source media="(max-width: 560px)" srcset="./assets/profile/light/connect-linkedin-mobile.svg" />
+<source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/connect-linkedin.svg" />
+<img src="./assets/profile/light/connect-linkedin.svg" alt="LinkedIn" />
+</picture>
+</a>
+<picture><source media="(max-width: 560px)" srcset="./assets/profile/connect-divider-mobile.svg" /><img src="./assets/profile/connect-divider.svg" alt="" /></picture>
+<a href="mailto:vaishnaviiyer2002@gmail.com">
+<picture>
+<source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/connect-email-mobile.svg" />
+<source media="(max-width: 560px)" srcset="./assets/profile/light/connect-email-mobile.svg" />
+<source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/connect-email.svg" />
+<img src="./assets/profile/light/connect-email.svg" alt="Email" />
+</picture>
+</a>
 </p>

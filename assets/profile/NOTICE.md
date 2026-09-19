@@ -9,6 +9,9 @@ only to indicate tools I work with.
 - svgl (https://svgl.app): Microsoft Excel, LangChain
 - Wikimedia Commons: Power BI
 
+The Let's Connect LinkedIn and envelope icons are original pixel drawings that only indicate the
+link destination.
+
 Concept glyphs (SQL, DAX, Power Query, LLMs, RAG, Agentic Workflows, Machine Learning,
 Delta Lake, pgvector), the three About Me micro-icons, and the divider are original.
 Delta Lake and pgvector have no official public logo mark, so their tiles use an
