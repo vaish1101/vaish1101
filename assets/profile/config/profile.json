@@ -60,15 +60,15 @@
     {
       "id": "churn",
       "slug": "churn",
-      "title": "Customer Churn Prediction & Retention",
-      "description": "Predictive retention system that identifies customers at churn risk, explains the main drivers, and converts model outputs into prioritized retention decisions.",
+      "title": "Churn Prediction & Retention Analytics",
+      "description": "Predictive modeling and retention analytics system that identifies customers at churn risk, explains key drivers, and converts model outputs into prioritized retention decisions.",
       "icon": "churn2",
       "technologies": [
         "Python",
         "scikit-learn",
-        "Logistic Regression",
-        "SVM",
+        "Predictive Modeling",
         "Model Evaluation",
+        "Retention Analytics",
         "Power BI"
       ],
       "url": null,
