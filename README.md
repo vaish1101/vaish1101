@@ -72,7 +72,7 @@
 <source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/featured-churn-mobile.svg" />
 <source media="(max-width: 560px)" srcset="./assets/profile/light/featured-churn-mobile.svg" />
 <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/featured-churn.svg" />
-<img src="./assets/profile/light/featured-churn.svg" alt="Customer Churn Prediction &amp; Retention. Predictive retention system that identifies customers at churn risk, explains the main drivers, and converts model outputs into prioritized retention decisions. Tech: Python, scikit-learn, Logistic Regression, SVM, Model Evaluation, Power BI." />
+<img src="./assets/profile/light/featured-churn.svg" alt="Churn Prediction &amp; Retention Analytics. Predictive modeling and retention analytics system that identifies customers at churn risk, explains key drivers, and converts model outputs into prioritized retention decisions. Tech: Python, scikit-learn, Predictive Modeling, Model Evaluation, Retention Analytics, Power BI." />
 </picture>
 </p>
 <!-- END GENERATED:FEATURED_WORK -->
