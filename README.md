@@ -44,18 +44,20 @@
 <source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/featured-ev-charging-mobile.svg" />
 <source media="(max-width: 560px)" srcset="./assets/profile/light/featured-ev-charging-mobile.svg" />
 <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/featured-ev-charging.svg" />
-<img src="./assets/profile/light/featured-ev-charging.svg" alt="EV Charging Infrastructure Intelligence. Regional analytics platform that integrates official German mobility and charging data into validated KPIs and dashboards to identify underserved regions and support infrastructure planning. Tech: Databricks, PySpark, Delta Lake, Power BI, GitHub Actions, Python." />
+<img src="./assets/profile/light/featured-ev-charging.svg" alt="EV Charging Expansion Intelligence. Regional analytics platform that integrates official German mobility and charging data into validated KPIs and dashboards to identify underserved regions and support infrastructure planning. Tech: Databricks, PySpark, Delta Lake, Power BI, GitHub Actions, Python." />
 </picture>
 </a>
 </p>
 
 <p align="center">
+<a href="https://github.com/vaish1101/vintage-watch-parts-pricing-turnover-intelligence">
 <picture>
 <source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/featured-watch-pricing-mobile.svg" />
 <source media="(max-width: 560px)" srcset="./assets/profile/light/featured-watch-pricing-mobile.svg" />
 <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/featured-watch-pricing.svg" />
 <img src="./assets/profile/light/featured-watch-pricing.svg" alt="Vintage Watch Parts Pricing &amp; Turnover Intelligence. Commercial analytics system for a real vintage watch parts business, using evidence based pricing and turnover analysis to generate explainable market value recommendations and selling horizon estimates from historical and active marketplace listings. Tech: Python, DuckDB, PostgreSQL, ETL, eBay API, Streamlit." />
 </picture>
+</a>
 </p>
 
 <p align="center">

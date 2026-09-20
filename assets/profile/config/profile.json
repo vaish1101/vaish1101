@@ -5,7 +5,7 @@
     {
       "id": "ev-charging",
       "slug": "ev-charging",
-      "title": "EV Charging Infrastructure Intelligence",
+      "title": "EV Charging Expansion Intelligence",
       "description": "Regional analytics platform that integrates official German mobility and charging data into validated KPIs and dashboards to identify underserved regions and support infrastructure planning.",
       "icon": "ev",
       "technologies": [
@@ -34,7 +34,7 @@
         "eBay API",
         "Streamlit"
       ],
-      "url": null,
+      "url": "https://github.com/vaish1101/vintage-watch-parts-pricing-turnover-intelligence",
       "enabled": true,
       "order": 2
     },
