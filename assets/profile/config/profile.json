@@ -71,7 +71,7 @@
         "Retention Analytics",
         "Power BI"
       ],
-      "url": null,
+      "url": "https://github.com/vaish1101/churn-prediction-retention-analytics",
       "enabled": true,
       "order": 4
     }
