@@ -61,12 +61,14 @@
 </p>
 
 <p align="center">
+<a href="https://github.com/vaish1101/enterprise-analytics-copilot">
 <picture>
 <source media="(prefers-color-scheme: dark) and (max-width: 560px)" srcset="./assets/profile/dark/featured-ai-agent-mobile.svg" />
 <source media="(max-width: 560px)" srcset="./assets/profile/light/featured-ai-agent-mobile.svg" />
 <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/dark/featured-ai-agent.svg" />
-<img src="./assets/profile/light/featured-ai-agent.svg" alt="Business Analytics AI Assistant. Multi agent AI system that turns business questions into end to end analysis, orchestrating analytics and RAG workflows to investigate KPIs, trends, and performance and provide grounded, validated decision support. Tech: Python, LangGraph, LLM APIs, RAG, pgvector, Pydantic, FastAPI." />
+<img src="./assets/profile/light/featured-ai-agent.svg" alt="Enterprise Analytics Copilot. Multi agent AI system that turns business questions into end to end analysis, orchestrating analytics and RAG workflows to investigate KPIs, trends, and performance and provide grounded, validated decision support. Tech: Python, LangGraph, LLM APIs, RAG, pgvector, Pydantic, FastAPI, Docker." />
 </picture>
+</a>
 </p>
 
 <p align="center">

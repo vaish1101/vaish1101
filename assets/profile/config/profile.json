@@ -41,7 +41,7 @@
     {
       "id": "ai-agent",
       "slug": "ai-agent",
-      "title": "Business Analytics AI Assistant",
+      "title": "Enterprise Analytics Copilot",
       "description": "Multi agent AI system that turns business questions into end to end analysis, orchestrating analytics and RAG workflows to investigate KPIs, trends, and performance and provide grounded, validated decision support.",
       "icon": "agents2",
       "technologies": [
@@ -51,9 +51,10 @@
         "RAG",
         "pgvector",
         "Pydantic",
-        "FastAPI"
+        "FastAPI",
+        "Docker"
       ],
-      "url": null,
+      "url": "https://github.com/vaish1101/enterprise-analytics-copilot",
       "enabled": true,
       "order": 3
     },
@@ -297,7 +298,8 @@
     "pgvector": "pgvector",
     "Pydantic": "pydantic",
     "FastAPI": "fastapi",
-    "scikit-learn": "sklearn"
+    "scikit-learn": "sklearn",
+    "Docker": "docker"
   },
   "tech_stack": {
     "items": [
